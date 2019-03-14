@@ -15,7 +15,7 @@ python setup.py install
 ~~~~ 
 
 ### Data preparation
-You need to process the data before feed it to VDRAE, please see [preprocess]((https://github.com/yifeishi/HierarchyLayout/tree/master/preprocess) for details. You can also download the preprocessed data here. 
+You need to process the data before feed it to VDRAE, please see [preprocess](https://github.com/yifeishi/HierarchyLayout/tree/master/preprocess) for details. You can also download the preprocessed data here. 
 
 ### Training
 Once you have the preprocessed data, you can train a model by run:
