@@ -14,8 +14,11 @@ git clone https://github.com/nearai/pytorch-tools.git
 python setup.py install
 ~~~~ 
 
+### Pretrained model
+You can download the pretrained models [here](https://www.dropbox.com/sh/wnlwvun49z0z3w3/AAAGXm7I-FBxO28dkL-rxrGYa?dl=0) for details.
+
 ### Data preparation
-You need to process the data before feed it to VDRAE, please see [preprocess](https://github.com/yifeishi/HierarchyLayout/tree/master/preprocess) for details. You can also download the preprocessed data here. 
+You need to process the data before feed it to VDRAE, please see [preprocess](https://github.com/yifeishi/HierarchyLayout/tree/master/preprocess) for details. You can also download the preprocessed data [here](https://www.dropbox.com/sh/xxxxxxxxxxxxxx). 
 
 ### Training
 Once you have the preprocessed data, you can train a model by run:
