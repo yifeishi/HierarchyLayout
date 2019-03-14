@@ -148,7 +148,6 @@ def box2AP(gt_info_path_list,pred_box_path_list,category):
             precision = float(TP)/(TP+FP)
             recall_list.append(recall)
             precision_list.append(precision)
-        #print('threshold,precision,recall',threshold,precision, recall)
     recall_list.append(0)
     precision_list.append(1)
     ap = 0
@@ -171,15 +170,16 @@ def my_collate(batch):
     return batch
 test_iter = torch.utils.data.DataLoader(grass_data, batch_size=1, shuffle=False, collate_fn=my_collate)
 
-g_box_path = '/home/net663/Downloads/yifeis/S3DIS'
+g_path = config.g_path
 category = config.ap_category
+room_type = config.room_type
 gt_info_path_list = []
 pred_box_path_list = []
 for batch_idx, batch in enumerate(test_iter):
-    # revise here
-    gt_info_path = os.path.join(batch[0].scene_dir,'gt_info.txt')
-    pred_box_path = os.path.join(batch[0].scene_dir,'data','files','pred_box.txt')
+    if room_type not in batch[0].scene_dir:
+        continue
+    gt_info_path = os.path.join(g_path,batch[0].scene_dir.split('/')[-1],'gt_info.txt')
+    pred_box_path = os.path.join(g_path,batch[0].scene_dir.split('/')[-1],'data','files','pred_box.txt')
     gt_info_path_list.append(gt_info_path)
     pred_box_path_list.append(pred_box_path)
-#print(box2AP)
 box2AP(gt_info_path_list,pred_box_path_list,category)

@@ -50,6 +50,7 @@ Arguments:
 '--gpu' (device id of GPU to run cuda; default=0)
 '--data_path' (path of the pickle files)
 '--pretrained_model' (pretrained model path; default='models')
+'--room_type' (the test room name; default='Area_6')
 ```
 
 ### Evaluation

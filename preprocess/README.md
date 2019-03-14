@@ -2,7 +2,7 @@
 
 These are the code to preprocess the data.
 ### Dependancy
-You should install [MATLAB Engine API][1], [Open3D][2], [scikit-learn][3].
+You should install [MATLAB Engine API][1], [Open3D][2], [scikit-learn][3], [tensorflow][4].
 ### Input file format
 **scene.txt**： Point cloud of the input scene. Each line provides the information of one point with:
 
@@ -35,4 +35,5 @@ The code will compute pair-wise affinities, build segment hierarchies, extract P
 [1]:  https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html "MATLAB Engine API"
 [2]:  https://github.com/IntelVCL/Open3D "Open3D"
 [3]:  https://github.com/scikit-learn/scikit-learn "scikit-learn"
-[4]:  https://github.com/ScanNet/ScanNet/tree/master/Segmentator "Over-segmentation"
+[4]:  https://github.com/tensorflow/tensorflow "tensorflow"
+[5]:  https://github.com/ScanNet/ScanNet/tree/master/Segmentator "Over-segmentation"

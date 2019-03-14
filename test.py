@@ -113,10 +113,10 @@ test_iter = torch.utils.data.DataLoader(grass_data, batch_size=1, shuffle=False,
 
 for batch_idx, batch in enumerate(test_iter):
     print(batch[0].scene_dir)
-    pred_pickle_path = os.path.join(batch[0].scene_dir,'data','files','pred.pickle')
+    pred_pickle_path = os.path.join(g_path,batch[0].scene_dir.split('/')[-1],'data','files','pred.pickle')
     gts, predictions, obbs, labels, ids, count = grassmodel.encode_decode_structure_eval(encoder_decoder, batch[0])
     mdict={'gts': gts, 'predictions': predictions, 'obbs': obbs, 'labels': labels,'ids':ids, 'count': count}
     with open(pred_pickle_path, 'wb+') as f:
         pickle.dump(mdict,f)
-    pred_box_path = os.path.join(batch[0].scene_dir,'data','files','pred_box.txt')
+    pred_box_path = os.path.join(g_path,batch[0].scene_dir.split('/')[-1],'data','files','pred_box.txt')
     pickle2predbox(pred_pickle_path,pred_box_path)

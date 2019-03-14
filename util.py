@@ -2,7 +2,7 @@ import os
 from argparse import ArgumentParser
 
 def get_args():
-    parser = ArgumentParser(description='grass_pytorch')
+    parser = ArgumentParser(description='vdrae')
     parser.add_argument('--obj_code_size', type=int, default=256+8)
     parser.add_argument('--box_code_size', type=int, default=8)
     parser.add_argument('--box_size', type=int, default=8)
@@ -29,17 +29,16 @@ def get_args():
     parser.add_argument('--lr_decay_every', type=float, default=20)
     parser.add_argument('--validate', action='store_true', default=True)
     parser.add_argument('--validate_every', type=float, default=20)
-
     parser.add_argument('--no_cuda', action='store_true', default=False)
     parser.add_argument('--gpu', type=int, default=0)
-    parser.add_argument('--g_path', type=str, default='')
-    parser.add_argument('--data_path', type=str, default='/home/net663/Downloads/yifeis/S3DIS/region_feature')
+
+    parser.add_argument('--g_path', type=str, default='data')
+    parser.add_argument('--data_path', type=str, default='processed_data')
     parser.add_argument('--save_path', type=str, default='models')
     parser.add_argument('--nick_name', type=str, default='')
     parser.add_argument('--resume_snapshot', type=str, default='')
-    parser.add_argument('--pretrained_model', type=str, default='')
-
-    parser.add_argument('--room_type', type=str, default='Area_1')
+    parser.add_argument('--pretrained_model', type=str, default='pretrained_model/encoder_decoder_model.pkl')
+    parser.add_argument('--room_type', type=str, default='Area_6')
     parser.add_argument('--ap_category', type=int, default=6)
     parser.add_argument('--IOU', type=float, default=0.5)
 
