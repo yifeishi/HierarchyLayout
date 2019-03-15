@@ -112,7 +112,7 @@ def my_collate(batch):
 test_iter = torch.utils.data.DataLoader(grass_data, batch_size=1, shuffle=False, collate_fn=my_collate)
 
 for batch_idx, batch in enumerate(test_iter):
-    print(batch[0].scene_dir)
+    print(os.path.join(g_path,batch[0].scene_dir.split('/')[-1],'data','files','pred.pickle'))
     pred_pickle_path = os.path.join(g_path,batch[0].scene_dir.split('/')[-1],'data','files','pred.pickle')
     gts, predictions, obbs, labels, ids, count = grassmodel.encode_decode_structure_eval(encoder_decoder, batch[0])
     mdict={'gts': gts, 'predictions': predictions, 'obbs': obbs, 'labels': labels,'ids':ids, 'count': count}

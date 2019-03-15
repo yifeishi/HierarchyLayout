@@ -5,34 +5,8 @@ import os
 import util
 from sklearn.neighbors import KDTree
 from open3d import *
+from util_obb import *
 import math
-
-def getPTS(pts_file,colorPara=1):
-    fpts = open(pts_file)
-    count = 0
-    while 1:
-        line = fpts.readline()
-        if not line:
-            break
-        count = count + 1
-    if count==0:
-        return np.zeros(6)
-    points = np.zeros((count,6))
-    count = 0
-    fpts = open(pts_file)
-    while 1:
-        line = fpts.readline()
-        if not line:
-            break
-        L = line.split(' ')
-        points[count,0] = float(L[0])
-        points[count,1] = float(L[1])
-        points[count,2] = float(L[2])
-        points[count,3] = float(L[3])/colorPara
-        points[count,4] = float(L[4])/colorPara
-        points[count,5] = float(L[5])/colorPara
-        count = count + 1
-    return points
 
 def computeColorBin(pts):
     color_bin = np.zeros(180)#r 5,g 5,b 5

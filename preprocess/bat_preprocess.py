@@ -1,8 +1,10 @@
 import os
 from multiprocessing import Pool
-g_path = '/home/net663/Downloads/yifeis/S3DIS/data_release'
-model_path = 'iter-2572'
-pkl_path = '/home/net663/Downloads/yifeis/S3DIS/region_feature'
+import util
+
+config = util.get_args()
+g_path = config.g_path
+pretrained_model = config.pretrained_model
 
 cmdList = []
 scene_names = os.listdir(g_path)
@@ -45,7 +47,7 @@ pool.join()
 
 cmd = 'python ./pointcnn/get_pts_feature_list.py --g_path %s'%(g_path)
 os.system('%s' %cmd)
-cmd = 'python ./pointcnn/gen_feature.py -t ./pointcnn/pts_feature_list.txt -s ./pointcnn/point2feature_weight -m pointcnn_cls -x example_x3_l4 -l %s'%(model_path)
+cmd = 'python ./pointcnn/gen_feature.py -t ./pointcnn/pts_feature_list.txt -s ./pointcnn/point2feature_weight -m pointcnn_cls -x example_x3_l4 -l %s'%(pretrained_model)
 os.system('%s' %cmd)
 pickle_path = '../pickle'
 cmd = 'python ./gen_grass_data.py --g_path %s --pickle_path %s'%(g_path, pickle_path)

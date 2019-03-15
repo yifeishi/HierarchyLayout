@@ -31,6 +31,18 @@ def getPTS(pts_file,colorPara=1):
         count = count + 1
     return points
 
+def obb2Aabb(obb):
+    aabb = np.zeros(6)
+    if abs(obb[6]) > 0.9:
+        aabb[0],aabb[1] = obb[0],obb[1]
+    elif abs(obb[7]) > 0.9:
+        aabb[0],aabb[1] = obb[1],obb[0]
+    else:
+        aabb[0] = aabb[1] = max(obb[1],obb[0])
+    aabb[2] = obb[2]
+    aabb[3:6] = obb[3:6]
+    return aabb
+
 # xMax,yMax,zMax,xMin,yMin,zMin to size,cen
 def AabbFeatureTransformer(obj_obb_fea_tmp):
     obj_obb_fea = np.zeros(6)

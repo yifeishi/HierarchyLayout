@@ -6,11 +6,12 @@ config = util.get_args()
 g_path = config.g_path
 pretrained_model = config.pretrained_model
 
-cmd = 'python3 test.py  --g_path %s --pretrained_model %s --room_type %s'%(g_path, pretrained_model, 'Area_6')
+cmd = 'python3 test.py  --g_path %s --pretrained_model %s --room_type %s --gpu 0'%(g_path, pretrained_model, 'Area_6')
 os.system('%s' %cmd)
 
+
 IOUs = [0.25,0.5]
-categories = [6,8,9,14]
+categories = [6,8,9,14] #chair,board,table,sofa
 for IOU in IOUs:
     cmdList = []
     for category in categories:

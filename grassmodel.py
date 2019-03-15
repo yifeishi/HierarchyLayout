@@ -197,12 +197,10 @@ class GRASSEncoderDecoder(nn.Module):
         self.sample_encoder = Sampler(feature_size = config.feature_size, hidden_size = config.feature_size)
 
         self.node_decoder = NodeDecoder(feature_size = config.feature_size)
-        #self.box_decoder = BoxDecoder(feature_size = config.feature_size, hidden_size = config.feature_size, box_size = config.box_size)
-        self.box_decoder = BoxDecoder(feature_size = 256, hidden_size = config.feature_size, box_size = config.box_size)
+        self.box_decoder = BoxDecoder(feature_size = config.feature_size, hidden_size = config.feature_size, box_size = config.box_size)
         self.sample_decoder = SampleDecoder(feature_size = config.feature_size, hidden_size = config.feature_size)
 
-        #self.node_classifier = NodeClassifier(feature_size = config.feature_size, hidden_size = config.feature_size)
-        self.node_classifier = NodeClassifier(feature_size = 256, hidden_size = config.feature_size)
+        self.node_classifier = NodeClassifier(feature_size = config.feature_size, hidden_size = config.feature_size)
 
         self.category_classifier = CategoryClassifier(feature_size = 256, hidden_size = config.hidden_size)
         self.leaf_classifier = LeafClassifier(feature_size = config.feature_size, hidden_size = config.hidden_size)
@@ -262,7 +260,7 @@ class GRASSEncoderDecoder(nn.Module):
         return v1.add_(v2)
 
     def vectorMultipler(self, v):
-        return v.mul_(0.1)
+        return v.mul_(10)
     
     def tensor2Node(self, v):
         return v
@@ -281,12 +279,12 @@ def encode_decode_structure_fold(fold, tree):
 
     def decode_node_box(node, feature):
         if node.is_leaf():
-            node_label = fold.add('nodeClassifier', node.pc_feature)#
+            node_label = fold.add('nodeClassifier', feature)
             node_cls_loss = fold.add('classifyLossEstimator', node_label, node.category)
             if node.category == 0 or node.category == 1:
                 loss = node_cls_loss
             else:
-                box = fold.add('boxDecoder', node.pc_feature, node.box)
+                box = fold.add('boxDecoder', feature, node.box)
                 reg_loss = fold.add('boxLossEstimator', box, node.reg)
                 reg_loss = fold.add('vectorMultipler', reg_loss)
                 loss = fold.add('vectorAdder', node_cls_loss, reg_loss)
@@ -298,12 +296,12 @@ def encode_decode_structure_fold(fold, tree):
             right_loss = decode_node_box(node.right, node.right.decode_feature)
             loss_left_right = fold.add('vectorAdder', left_loss, right_loss)
 
-            node_label = fold.add('nodeClassifier', node.pc_feature)#
+            node_label = fold.add('nodeClassifier', feature)
             node_cls_loss = fold.add('classifyLossEstimator', node_label, node.category)
             if node.category == 0 or node.category == 1:
                 loss_cur = node_cls_loss
             else:
-                box = fold.add('boxDecoder', node.pc_feature, node.box)
+                box = fold.add('boxDecoder', feature, node.box)
                 reg_loss = fold.add('boxLossEstimator', box, node.reg)
                 reg_loss = fold.add('vectorMultipler', reg_loss)
                 loss_cur = fold.add('vectorAdder', node_cls_loss, reg_loss)
@@ -318,8 +316,6 @@ def encode_decode_structure_fold(fold, tree):
     feature = sample_decoder(feature)
     loss = decode_node_box(tree.root, feature)
     return loss
-
-    
 
 #########################################################################################
 ## GRASSEncoderDecoder Evaluation
@@ -352,7 +348,7 @@ def encode_decode_structure_eval(model, tree):
 
     def decode_node_box(node, feature, gts, predictions, obbs, labels, ids, count):
         if node.is_leaf():
-            nodel_cls = model.nodeClassifier(node.pc_feature)#
+            nodel_cls = model.nodeClassifier(feature)
             nodel_cls = nn.Softmax()(nodel_cls)
             value, node_label = torch.max(nodel_cls, 1)
  
@@ -363,8 +359,9 @@ def encode_decode_structure_eval(model, tree):
                 gts[count] = gt_category
                 labels[count] = node_label.cpu()
                 predictions[count] = nodel_cls.cpu().data.numpy()[0]
-                box_reg = model.boxDecoder(node.pc_feature, node.box)
+                box_reg = model.boxDecoder(feature, node.box)
                 box = node.box.cpu().data.numpy()[0]
+                #reg = node.reg.data.numpy()[0]
                 reg = box_reg.cpu().data.numpy()[0]
                 box_new = box + reg
                 box_new[6:8] = box_new[6:8] - reg[6:8]
@@ -373,7 +370,7 @@ def encode_decode_structure_eval(model, tree):
                 count = count + 1
             return gts, predictions, obbs, labels, ids, count
         elif node.is_internal():
-            nodel_cls = model.nodeClassifier(node.pc_feature)#
+            nodel_cls = model.nodeClassifier(feature)
             nodel_cls = nn.Softmax()(nodel_cls)
             value, node_label = torch.max(nodel_cls, 1)
             
@@ -384,8 +381,9 @@ def encode_decode_structure_eval(model, tree):
                 gts[count] = gt_category
                 labels[count] = node_label.cpu()
                 predictions[count] = nodel_cls.cpu().data.numpy()[0]
-                box_reg = model.boxDecoder(node.pc_feature, node.box)
+                box_reg = model.boxDecoder(feature, node.box)
                 box = node.box.cpu().data.numpy()[0]
+                #reg = node.reg.data.numpy()[0]
                 reg = box_reg.cpu().data.numpy()[0]
                 box_new = box + reg
                 box_new[6:8] = box_new[6:8] - reg[6:8]

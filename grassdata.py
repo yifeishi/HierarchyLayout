@@ -112,7 +112,7 @@ class GRASSDataset(data.Dataset):
             if config.room_type not in scene_dir:
                 new_pkl_names.append(pkl_name)
         self.pkl_names = new_pkl_names
-
+        
     def __getitem__(self, index):
         with open(os.path.join(self.dir,self.pkl_names[index]), 'r') as f:
             data = pickle.load(StrToBytes(f),encoding='iso-8859-1')
@@ -147,7 +147,7 @@ class GRASSDatasetTest(data.Dataset):
             if config.room_type in scene_dir:
                 new_pkl_names.append(pkl_name)
         self.pkl_names = new_pkl_names
-
+        
     def __getitem__(self, index):
         with open(os.path.join(self.dir,self.pkl_names[index]), 'r') as f:
             data = pickle.load(StrToBytes(f),encoding='iso-8859-1')
@@ -167,3 +167,5 @@ class GRASSDatasetTest(data.Dataset):
 
     def __len__(self):
         return len(self.pkl_names)
+
+

@@ -15,10 +15,10 @@ python setup.py install
 ~~~~ 
 
 ### Pretrained model
-You can download the pretrained models [here](https://www.dropbox.com/sh/wnlwvun49z0z3w3/AAAGXm7I-FBxO28dkL-rxrGYa?dl=0).
+You can download the pretrained models [here](https://www.dropbox.com/s/erh4qv5dggx2x9b/pretrained_model.zip?dl=0).
 
 ### Data preparation
-You need to process the data before feed it to VDRAE, please see [preprocess](https://github.com/yifeishi/HierarchyLayout/tree/master/preprocess) for details. You can also download the preprocessed data [here](https://www.dropbox.com/sh/xxxxxxxxxxxxxx). 
+You need to process the [raw data](https://www.dropbox.com/s/75h0pq2zmndpgds/data.zip?dl=0) before feed it to VDRAE, please see [preprocess](https://github.com/yifeishi/HierarchyLayout/tree/master/preprocess) for details. You can also download the preprocessed data [here](https://www.dropbox.com/s/goxw95depasofs8/processed_data.zip?dl=0). 
 
 ### Training
 Once you have the preprocessed data, you can train a model by run:
@@ -34,7 +34,7 @@ Arguments:
 '--save_snapshot_every' (save training log for every X frames; default=100)
 '--no_cuda' (use cpu only; default=False)
 '--gpu' (device id of GPU to run cuda; default=0)
-'--data_path' (path of the pickle files)
+'--data_path' (path of the preprocessed data)
 '--save_path' (trained model path; default='models')
 ```
 
@@ -48,7 +48,7 @@ Arguments:
 ```
 '--no_cuda' (use cpu only; default=False)
 '--gpu' (device id of GPU to run cuda; default=0)
-'--data_path' (path of the pickle files)
+'--data_path' (path of the preprocessed data)
 '--pretrained_model' (pretrained model path; default='models')
 '--room_type' (the test room name; default='Area_6')
 ```
@@ -63,6 +63,7 @@ Arguments:
 ```
 '--ap_category' (the category of evaluation)
 '--IOU' (iou to be used for evaluation; default=0.5)
+'--room_type' (the test room name; default='Area_6')
 ```
 
 ## Citation
