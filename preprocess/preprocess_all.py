@@ -4,7 +4,7 @@ import numpy as np
 import random
 import util
 import shutil
-from vdrae.util_obb import *
+from util_obb import *
 from qhull_2d import *
 from min_bounding_rect import *
 
