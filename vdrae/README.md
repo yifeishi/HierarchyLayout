@@ -58,7 +58,7 @@ Arguments:
 ```
 
 ### Testing and evaluation script
-An example about how to run the code of testing and evaluation can be found at bat_test_eval.py
+An example about how to run the code of testing and evaluation can be found in bat_test_eval.py
 
 [1]:  https://arxiv.org/pdf/1903.03757.pdf "Hierarchy Denoising Recursive Autoencoders for 3D Scene Layout Prediction"
 [2]:  https://github.com/nearai/torchfold "torchfold"

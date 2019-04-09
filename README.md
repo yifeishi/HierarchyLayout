@@ -14,7 +14,7 @@ The code includes two components: data preprocessing and VDRAE.
 You need to process the [raw data](?) before feed it to VDRAE, please see [preprocess](?) for details. 
 
 ### VDRAE
-The VDRAE is the main network of this projcet. After data preparation, you can train and test the scene by looking at [vdrae](https://github.com/yifeishi/HierarchyLayout/tree/master/vdrae).
+The VDRAE is the main network of this project. After data preparation, you can train and test the scene by looking at [vdrae](https://github.com/yifeishi/HierarchyLayout/tree/master/vdrae).
 
 ## Citation
 If you find the code is useful, please cite:
