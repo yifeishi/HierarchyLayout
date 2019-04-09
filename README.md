@@ -8,63 +8,13 @@ Created by Yifei Shi, Angel Xuan Chang, Zhelun Wu, Manolis Savva and Kai Xu
 
 ## Usage - VDRAE
 ### Dependancy
-The code depends on Pytorch 3. [pytorch-tools][2] should be installed: 
-~~~~ 
-git clone https://github.com/nearai/pytorch-tools.git
-python setup.py install
-~~~~ 
-
-### Pretrained model
-You can download the pretrained models [here](https://www.dropbox.com/s/erh4qv5dggx2x9b/pretrained_model.zip?dl=0).
+The code includes two components: data preprocessing and VDRAE.
 
 ### Data preparation
-You need to process the [raw data](https://www.dropbox.com/s/75h0pq2zmndpgds/data.zip?dl=0) before feed it to VDRAE, please see [preprocess](https://github.com/yifeishi/HierarchyLayout/tree/master/preprocess) for details. You can also download the preprocessed data [here](https://www.dropbox.com/s/goxw95depasofs8/processed_data.zip?dl=0). 
+You need to process the [raw data](?) before feed it to VDRAE, please see [preprocess](?) for details. 
 
-### Training
-Once you have the preprocessed data, you can train a model by run:
-~~~~ 
-python train.py --data_path DATA_PATH
-~~~~ 
-
-Arguments: 
-```
-'--epochs' (number of epochs; default=5000)
-'--batch_size' (batch size; default=1)
-'--save_snapshot' (save snapshots of trained model; default=True)
-'--save_snapshot_every' (save training log for every X frames; default=100)
-'--no_cuda' (use cpu only; default=False)
-'--gpu' (device id of GPU to run cuda; default=0)
-'--data_path' (path of the preprocessed data)
-'--save_path' (trained model path; default='models')
-```
-
-### Testing
-To perform the inference, run:
-~~~~ 
-python test.py --data_path DATA_PATH --pretrained_model PRETRAEINED_MODEL_PATH
-~~~~ 
-
-Arguments:
-```
-'--no_cuda' (use cpu only; default=False)
-'--gpu' (device id of GPU to run cuda; default=0)
-'--data_path' (path of the preprocessed data)
-'--pretrained_model' (pretrained model path; default='models')
-'--room_type' (the test room name; default='Area_6')
-```
-
-### Evaluation
-To evaluate the results , run:
-~~~~ 
-python evaluation.py --ap_category THE_CATEGORY_TO_BE_EVALUATED --IOU IOU
-~~~~ 
-
-Arguments:
-```
-'--ap_category' (the category of evaluation)
-'--IOU' (iou to be used for evaluation; default=0.5)
-'--room_type' (the test room name; default='Area_6')
-```
+### VDRAE
+The VDRAE is the main network of this projcet. After data preparation, you can train and test the scene by looking at [vdrae](https://github.com/yifeishi/HierarchyLayout/tree/master/vdrae).
 
 ## Citation
 If you find the code is useful, please cite:
@@ -78,5 +28,3 @@ year = {2019}
 ~~~~
 
 [1]:  https://arxiv.org/pdf/1903.03757.pdf "Hierarchy Denoising Recursive Autoencoders for 3D Scene Layout Prediction"
-[2]:  https://github.com/nearai/torchfold "Data and model"
-
