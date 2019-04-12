@@ -227,7 +227,7 @@ for i in range(len(trees)):
             adj_matrix[segment_id_list[i],segment_id_list[j]] = 1
             adj_matrix[segment_id_list[j],segment_id_list[i]] = 1
             count_adj += 1
-np.savetxt(os.path.join(files_dir,'segment_adj_adjacent_matrix.txt'),adj_matrix)
+np.savetxt(os.path.join(files_dir,'segment_adjacent_matrix.txt'),adj_matrix)
 
 ##########################################################################
 ## compute affinity matrix

@@ -119,11 +119,11 @@ count = 0
 scene_names = os.listdir(g_path)
 scene_names.sort()
 for scene_name in scene_names:
-    if scene_name.split('.')[1] not in scene_list:
+    if scene_name.split('.')[0] not in scene_list:
         continue
     scene_dir = os.path.join(g_path,scene_name)
     hier_name = os.path.join(scene_dir,'data','files','hier_ncut.txt')
-    node_info_name = os.path.join(scene_dir,'data','files','node_info.txt')
+    node_info_name = os.path.join(scene_dir,'data','files','node_info_on_points.txt')
     all_box_dir = os.path.join(scene_dir,'data','files','pred_box_all_node.txt')
 
     if not os.path.exists(hier_name):
@@ -131,7 +131,6 @@ for scene_name in scene_names:
         continue
     (feature_dir,boxes,boxes_reg,category,category_pred,mapFather, mapChild1, mapChild2, isLeaf) = genGrassData(scene_dir,hier_name,node_info_name,all_box_dir)
     mdict={'scene_dir': scene_dir, 'feature_dir': feature_dir, 'boxes': boxes,'boxes_reg': boxes_reg, 'category_pred':category_pred, 'category':category, 'mapFather':mapFather, 'mapChild1':mapChild1, 'mapChild2':mapChild2, 'isLeaf':isLeaf}
-    with open(os.path.join(pickle_path, 'test' + '_' + str(count) + '.pkl'), 'wb+') as f:
+    with open(os.path.join(pickle_path, 'scene' + '_' + str(count) + '.pkl'), 'wb+') as f:
         pickle.dump(mdict,f)
-    print(count)
     count = count + 1

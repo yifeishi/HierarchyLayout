@@ -232,6 +232,7 @@ def main():
             cloud_feature = np.array(cloud_feature)
             cloud_feature = cloud_feature.reshape((batch_size, -1))
 
+            """
             #feature_path
             for i in range(batch_size):
                 wr_index = batch_idx_train * batch_size + i
@@ -246,6 +247,22 @@ def main():
                 f.write('\n')
                 np.savetxt(feature_path[wr_index], cloud_feature[i], fmt='%.6e', newline=' ')
                 print("{} has writed".format(write_path[wr_index]))
+            """
+            
+            for i in range(batch_size):
+                wr_index = batch_idx_train * batch_size + i
+                f = open(write_path[wr_index],'a')
+                f.write('%f %f %f %f %f %f %f %f %d '%(obbs[wr_index][0],obbs[wr_index][1],obbs[wr_index][2],obbs[wr_index][3],\
+                            obbs[wr_index][4],obbs[wr_index][5],obbs[wr_index][6],obbs[wr_index][7],gts[wr_index]))
+                for j in range(cloud_prob.shape[2]):
+                    if cloud_prob[i,0,j] < 0.01:
+                        f.write('0 ')
+                    else:
+                        f.write('%f '%(cloud_prob[i,0,j]))
+                f.write('\n')
+                np.savetxt(feature_path[wr_index], cloud_feature[i], fmt='%.6e', newline=' ')
+                print("{} has writed".format(write_path[wr_index]))
+
 
         sys.stdout.flush()
         print('{}-Done!'.format(datetime.now()))

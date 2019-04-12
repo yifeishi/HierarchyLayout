@@ -2,7 +2,7 @@
 These are the code for data preprocessing.
 
 ### Dependancy
-The code depends on Tensorflow (for PointCNN feature extraction), Pytorch 2 (for obb computation) and Pytorch 3 (for others). [open3d][3], [sklearn][4] should also be installed under Python3. 
+The code depends on Tensorflow (for PointCNN feature extraction), Pytorch 2 (for obb computation) and Pytorch 3 (for others). [open3d][3], [sklearn][4], [matlab.engine][5] should also be installed under Python3. 
 
 ### Data download
 For quick start, you can simply download the processed data of Matterport and S3DIS scenes [here](?).
@@ -42,3 +42,4 @@ python3 gen_node_prob_feature.py -t INFERENCE_TXT_FILE -s PATH_OF_POINTCNN_CODE 
 [2]:  https://github.com/nearai/torchfold "Data and model"
 [3]:  http://www.open3d.org/ "open3d"
 [4]:  https://scikit-learn.org/stable/ "sklearn"
+[5]:  https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html "matlab.engine"
