@@ -11,7 +11,7 @@ Created by Yifei Shi, Angel Xuan Chang, Zhelun Wu, Manolis Savva and Kai Xu
 The code includes two components: data preprocessing and VDRAE.
 
 ### Data preparation
-You need to process the [raw data](?) before feed it to VDRAE, please see [preprocess](?) for details. 
+You need to process the [raw data](?) before feed it to VDRAE, please see [preprocess](https://github.com/yifeishi/HierarchyLayout/tree/master/prerprocess) for details. 
 
 ### VDRAE
 The VDRAE is the main network of this project. After data preparation, you can train and test the scene by looking at [vdrae](https://github.com/yifeishi/HierarchyLayout/tree/master/vdrae).
