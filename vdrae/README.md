@@ -1,14 +1,14 @@
-## VDRAE
+# VDRAE
 These are the code for VDRAE.
 
 ### Dependancy
 The code depends on Pytorch 3. [pytorch-tools][2] should be installed.
 
 ### Pretrained model
-You can download the pretrained models for Matterport3D [here](?) and S3DIS [here](?).
+You can download the pretrained models for S3DIS and Matterport3D [here](https://www.dropbox.com/s/53fyv743lcduul0/pretrained_model.zip?dl=0).
 
 ### Data preparation
-You need to process the [raw data](?) before feed it to VDRAE, please see [preprocess](https://github.com/yifeishi/HierarchyLayout/tree/master/preprocess) for details. You can also download the preprocessed data [here](?). 
+You need to process the raw data before feed it to VDRAE, please see [preprocess](https://github.com/yifeishi/HierarchyLayout/tree/master/preprocess) for details. You can also download the preprocessed data [here](https://www.dropbox.com/s/kdty4kn7tlwsusv/processed_data.zip?dl=0).
 
 ### Training
 Once you have the preprocessed data, you can train a model by run:

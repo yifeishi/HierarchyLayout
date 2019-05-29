@@ -5,8 +5,8 @@ These are the code for data preprocessing.
 The code depends on Tensorflow (for PointCNN feature extraction), Pytorch 2 (for obb computation) and Pytorch 3 (for others). [open3d][3], [sklearn][4], [matlab.engine][5] should also be installed under Python3. 
 
 ### Data download
-For quick start, you can simply download the processed data of Matterport and S3DIS scenes [here](?).
-You can also download the raw data of Matterport and S3DIS scenes [here](?).
+For quick start, you can simply download the processed data of Matterport and S3DIS scenes [here](https://www.dropbox.com/s/kdty4kn7tlwsusv/processed_data.zip?dl=0).
+You can also download the raw data of S3DIS [here](https://www.dropbox.com/s/e9e6o1iikeg4g8l/s3dis.zip?dl=0) and Matterport3D [here](https://www.dropbox.com/s/ynvg1yzsn9m9g37/matterport.zip?dl=0).
 
 ### Usage
 The function of this code is to load an oversegemented scene, compute the pair-wise affinities for the oversegemented patches, build hierarchy by normalized-cut, extract features for each node and generate pickle files that could be processed by VDRAE. An example about how to run the code is bat_preprocess.py. You can simply modify the varibles (dataset and data_path) to run the script.
